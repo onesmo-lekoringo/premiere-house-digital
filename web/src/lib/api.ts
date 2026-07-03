@@ -83,3 +83,35 @@ export async function submitSignup(payload: SignupPayload): Promise<SignupRecord
     createdAt: result.data.created_at,
   };
 }
+
+export type TicketPayload = {
+  film_slug: string;
+  name: string;
+  email: string;
+  tier: string;
+  quantity: number;
+  seats: string;
+};
+
+export type TicketRecord = TicketPayload & { id: number; created_at: string };
+
+/** POST /api/tickets — reserve premiere tickets in the SQLite database */
+export async function submitTicket(payload: TicketPayload): Promise<TicketRecord> {
+  const res = await fetch(`${API_URL}/tickets`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    const errMsg = errData.message || "Failed to reserve tickets";
+    throw new Error(errMsg);
+  }
+
+  const result = await res.json();
+  return result.data;
+}

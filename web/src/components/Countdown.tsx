@@ -23,9 +23,17 @@ export function Countdown({
   size?: "lg" | "sm";
 }) {
   const target = new Date(iso).getTime();
-  const [t, setT] = useState(() => diff(target));
+  const [t, setT] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    milliseconds: 0,
+    done: false,
+  });
 
   useEffect(() => {
+    setT(diff(target));
     const id = setInterval(() => setT(diff(target)), 33);
     return () => clearInterval(id);
   }, [target]);

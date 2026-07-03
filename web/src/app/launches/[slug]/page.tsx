@@ -100,6 +100,28 @@ export default async function Page({
                 </a>
               </div>
             </Reveal>
+
+            <Reveal delay={120}>
+              <div className="mt-10">
+                <p className="eyebrow text-primary">Attendance</p>
+                <Link
+                  href={`/launches/${film.slug}/tickets`}
+                  className="group mt-5 flex items-center justify-between border border-primary bg-primary/5 p-6 transition-colors hover:bg-primary/10"
+                >
+                  <div>
+                    <span className="font-display text-2xl font-extrabold uppercase tracking-tight sm:text-3xl block text-primary">
+                      Reserve Tickets
+                    </span>
+                    <span className="font-serif text-sm text-muted-foreground mt-1 block">
+                      Secure credentials for the opening night premiere
+                    </span>
+                  </div>
+                  <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground font-bold transition-transform group-hover:scale-110">
+                    🎟
+                  </span>
+                </Link>
+              </div>
+            </Reveal>
           </div>
 
           {/* Right: facts + cast + countdown */}
