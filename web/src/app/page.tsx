@@ -8,7 +8,10 @@ import { FilmCard } from "@/components/FilmCard";
 export const revalidate = 0; // Disable static caching so it always fetches fresh data from Laravel
 
 export default async function Page() {
-  const films = await fetchFilms().catch(() => []);
+  const films = await fetchFilms().catch((err) => {
+    console.error("Failed to fetch films:", err);
+    return [];
+  });
   const featured = films.find((f) => f.featured) || films[0];
 
   if (!featured) {

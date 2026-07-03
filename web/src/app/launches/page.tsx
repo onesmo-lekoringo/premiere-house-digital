@@ -11,7 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const films = await fetchFilms().catch(() => []);
+  const films = await fetchFilms().catch((err) => {
+    console.error("Failed to fetch films on launches page:", err);
+    return [];
+  });
 
   return (
     <div className="mx-auto max-w-7xl px-5 pb-28 pt-32 sm:px-8 sm:pt-40">
