@@ -30,7 +30,7 @@ export type SignupPayload = {
 
 export type SignupRecord = SignupPayload & { id: string; createdAt: string };
 
-const API_URL = "http://localhost:8000/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
 
 /** GET /api/films */
 export async function fetchFilms(): Promise<Film[]> {
